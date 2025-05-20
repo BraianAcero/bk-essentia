@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation"
 import ProductPageClient from "@/components/product-page-client"
 
+// Marcar como estático para la exportación
+export const dynamic = "force-static"
+export const dynamicParams = true
+
 // Datos iniciales de productos detallados
 const initialProducts = {
   men: [
@@ -79,6 +83,22 @@ const initialProducts = {
     },
     // Otros productos se cargarían dinámicamente
   ],
+}
+
+// Generar rutas estáticas para los productos iniciales
+export function generateStaticParams() {
+  const params: { category: string; id: string }[] = []
+
+  Object.entries(initialProducts).forEach(([category, products]) => {
+    products.forEach((product) => {
+      params.push({
+        category,
+        id: product.id,
+      })
+    })
+  })
+
+  return params
 }
 
 export default function ProductPage({ params }: { params: { category: string; id: string } }) {

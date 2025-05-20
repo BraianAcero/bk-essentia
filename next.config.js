@@ -11,8 +11,10 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Esta configuración permite que las rutas funcionen correctamente con archivos index.html
-  // Y hace que Next.js genere /ruta/index.html en lugar de /ruta.html
+  // Asegurarse de que las rutas de API se manejen correctamente
+  experimental: {
+    appDocumentPreloading: false,
+  },
 }
 
 module.exports = nextConfig

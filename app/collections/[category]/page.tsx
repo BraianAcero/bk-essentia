@@ -1,6 +1,14 @@
 import { notFound } from "next/navigation"
 import CategoryPageClient from "@/components/category-page-client"
 
+// Marcar como estático para la exportación
+export const dynamic = "force-static"
+
+// Generar rutas estáticas para las categorías
+export function generateStaticParams() {
+  return [{ category: "men" }, { category: "women" }, { category: "arabian" }, { category: "unisex" }]
+}
+
 // Tipo para los productos
 interface Product {
   id: string
